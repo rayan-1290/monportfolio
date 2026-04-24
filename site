@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rayan COLLINOT — Portfolio BTS SIO</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a1210;
+  --bg-card: #0f1f1b;
+  --bg-card-hover: #162b25;
+  --accent: #34d399;
+  --accent-dim: #065f46;
+  --accent-glow: rgba(52, 211, 153, 0.15);
+  --green: #67e8f9;
+  --green-dim: rgba(103, 232, 249, 0.12);
+  --amber: #fbbf24;
+  --text: #e2e8f0;
+  --text-dim: #94a3b8;
+  --text-muted: #64748b;
+  --border: #1a2f28;
+  --radius: 12px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Outfit', sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── GRID BACKGROUND ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(52, 211, 153, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(52, 211, 153, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  background: rgba(10, 14, 23, 0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+}
+
+nav .nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+nav .logo {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--accent);
+  text-decoration: none;
+  letter-spacing: -0.5px;
+}
+
+nav .logo span { color: var(--text-dim); }
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+nav ul a {
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: color 0.3s;
+  position: relative;
+}
+
+nav ul a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s;
+}
+
+nav ul a:hover { color: var(--accent); }
+nav ul a:hover::after { width: 100%; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 6rem 2rem 4rem;
+}
+
+.hero-content {
+  max-width: 800px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero .tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--green);
+  background: var(--green-dim);
+  padding: 6px 14px;
+  border-radius: 100px;
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  animation: fadeSlideUp 0.8s ease both;
+}
+
+.hero h1 {
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -2px;
+  margin-bottom: 1rem;
+  animation: fadeSlideUp 0.8s 0.15s ease both;
+}
+
+.hero h1 .accent { color: var(--accent); }
+
+.hero .subtitle {
+  font-size: 1.15rem;
+  color: var(--text-dim);
+  max-width: 550px;
+  margin-bottom: 2.5rem;
+  animation: fadeSlideUp 0.8s 0.3s ease both;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  animation: fadeSlideUp 0.8s 0.45s ease both;
+}
+
+.btn {
+  padding: 12px 28px;
+  border-radius: 100px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.btn-primary:hover {
+  background: #6ee7b7;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(52, 211, 153, 0.3);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* Floating orb */
+.hero-orb {
+  position: absolute;
+  right: -5%;
+  top: 20%;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(52, 211, 153, 0.08), transparent 70%);
+  filter: blur(60px);
+  animation: orbFloat 8s ease-in-out infinite;
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-40px) scale(1.05); }
+}
+
+/* ── SECTIONS ── */
+section {
+  position: relative;
+  z-index: 1;
+  padding: 6rem 2rem;
+}
+
+.section-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin-bottom: 3rem;
+}
+
+/* ── TIMELINE ── */
+.timeline {
+  position: relative;
+  padding-left: 40px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--accent), var(--accent-dim), transparent);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2.5rem;
+  animation: fadeSlideUp 0.6s ease both;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -35px;
+  top: 8px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--accent);
+  z-index: 2;
+}
+
+.timeline-item:first-child::before {
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent);
+}
+
+.timeline-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--accent);
+  margin-bottom: 0.25rem;
+}
+
+.timeline-place {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.timeline-item h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+/* ── PROJECT CARDS ── */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.project-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  transition: all 0.4s;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--green));
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.project-card:hover {
+  border-color: var(--accent-dim);
+  background: var(--bg-card-hover);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.project-card:hover::before { opacity: 1; }
+
+.project-card .card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.project-card h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  flex: 1;
+}
+
+.project-card .year-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--amber);
+  background: rgba(251, 191, 36, 0.1);
+  padding: 4px 10px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.project-card .card-desc {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  margin-bottom: 1.25rem;
+}
+
+.project-card .card-tasks {
+  list-style: none;
+  margin-bottom: 1.5rem;
+}
+
+.project-card .card-tasks li {
+  position: relative;
+  padding-left: 1.25rem;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  margin-bottom: 0.4rem;
+  line-height: 1.5;
+}
+
+.project-card .card-tasks li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tech-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--accent);
+  background: var(--accent-glow);
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(52, 211, 153, 0.15);
+}
+
+/* ── CODE BLOCK ── */
+.code-block {
+  background: #0d1117;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin: 1rem 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--green);
+  overflow-x: auto;
+  line-height: 1.7;
+}
+
+/* ── SKILLS ── */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.skill-group {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  transition: all 0.3s;
+}
+
+.skill-group:hover {
+  border-color: var(--accent-dim);
+  transform: translateY(-2px);
+}
+
+.skill-group .skill-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.skill-group h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.skill-pill {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  background: rgba(148, 163, 184, 0.08);
+  padding: 5px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  transition: all 0.3s;
+}
+
+.skill-pill:hover {
+  color: var(--accent);
+  border-color: var(--accent-dim);
+  background: var(--accent-glow);
+}
+
+/* ── LANGUAGES BAR ── */
+.lang-bars {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.lang-item {
+  flex: 1;
+  min-width: 200px;
+}
+
+.lang-item .lang-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.4rem;
+  font-size: 0.85rem;
+}
+
+.lang-item .lang-level {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--accent);
+  font-size: 0.8rem;
+}
+
+.lang-bar-bg {
+  height: 6px;
+  background: var(--border);
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.lang-bar-fill {
+  height: 100%;
+  border-radius: 100px;
+  background: linear-gradient(90deg, var(--accent), var(--green));
+  transition: width 1.5s ease;
+}
+
+/* ── SYNTHESIS TABLE ── */
+.synthesis-table-wrap {
+  overflow-x: auto;
+  margin-bottom: 2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+.synthesis-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  min-width: 700px;
+}
+
+.synthesis-table thead {
+  background: rgba(52, 211, 153, 0.08);
+}
+
+.synthesis-table th {
+  padding: 12px 14px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.synthesis-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(30, 41, 59, 0.5);
+  color: var(--text-dim);
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+.synthesis-table tbody tr {
+  transition: background 0.2s;
+}
+
+.synthesis-table tbody tr:hover {
+  background: rgba(52, 211, 153, 0.04);
+}
+
+.synthesis-table .highlight-row td {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* ── COMPETENCE DOCS ── */
+.comp-doc {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.comp-doc::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--green));
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.comp-doc:hover {
+  border-color: var(--accent-dim);
+  transform: translateY(-2px);
+}
+
+.comp-doc:hover::before { opacity: 1; }
+
+.comp-doc .comp-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--green);
+  background: var(--green-dim);
+  padding: 4px 12px;
+  border-radius: 100px;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.comp-doc h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.comp-doc h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin: 1.25rem 0 0.5rem;
+}
+
+.comp-doc p, .comp-doc li {
+  font-size: 0.88rem;
+  color: var(--text-dim);
+  line-height: 1.65;
+}
+
+.comp-doc ul {
+  list-style: none;
+  padding: 0;
+}
+
+.comp-doc ul li {
+  position: relative;
+  padding-left: 1.25rem;
+  margin-bottom: 0.35rem;
+}
+
+.comp-doc ul li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+/* ── FOOTER ── */
+footer {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--border);
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+footer p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+footer .footer-name {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--accent);
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.anim {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.anim.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+  nav ul { display: none; }
+  .hero h1 { font-size: 2.4rem; letter-spacing: -1px; }
+  .hero-orb { width: 300px; height: 300px; right: -15%; top: 10%; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .lang-bars { flex-direction: column; gap: 1rem; }
+  section { padding: 4rem 1.25rem; }
+}
+
+/* ── HAMBURGER ── */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--text-dim);
+  margin: 5px 0;
+  transition: all 0.3s;
+}
+
+@media (max-width: 768px) {
+  .hamburger { display: block; }
+  nav ul {
+    display: none;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: rgba(10, 14, 23, 0.97);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    padding: 1.5rem 2rem;
+    gap: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  nav ul.open { display: flex; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">rayan<span>.collinot</span></a>
+    <button class="hamburger" onclick="document.querySelector('nav ul').classList.toggle('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul>
+      <li><a href="#formation" onclick="document.querySelector('nav ul').classList.remove('open')">Formation</a></li>
+      <li><a href="#projets" onclick="document.querySelector('nav ul').classList.remove('open')">Projets</a></li>
+      <li><a href="#synthese" onclick="document.querySelector('nav ul').classList.remove('open')">Synthèse</a></li>
+      <li><a href="#docs-competences" onclick="document.querySelector('nav ul').classList.remove('open')">Documentation</a></li>
+      <li><a href="#competences" onclick="document.querySelector('nav ul').classList.remove('open')">Compétences</a></li>
+      <li><a href="#contact" onclick="document.querySelector('nav ul').classList.remove('open')">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-orb"></div>
+  <div class="hero-content">
+    <h1>Rayan <span class="accent">COLLINOT</span></h1>
+    <p class="subtitle">Étudiant en BTS SIO option SISR — Passionné par l'administration système, le cloud et les infrastructures réseau.</p>
+    <div class="hero-cta">
+      <a href="#projets" class="btn btn-primary">Voir mes projets</a>
+      <a href="#competences" class="btn btn-outline">Mes compétences</a>
+    </div>
+  </div>
+</section>
+
+<!-- FORMATION -->
+<section id="formation">
+  <div class="section-inner">
+    <div class="section-label">// Parcours</div>
+    <h2 class="section-title">Diplômes & Formations</h2>
+
+    <div class="timeline">
+      <div class="timeline-item anim">
+        <div class="timeline-date">2025 — 2027</div>
+        <h3>BTS SIO — Option SISR</h3>
+        <div class="timeline-place">EFREI Panthéon Assas · Villejuif (94800)</div>
+      </div>
+      <div class="timeline-item anim">
+        <div class="timeline-date">2024 — 2025</div>
+        <h3>Baccalauréat STI2D</h3>
+        <div class="timeline-place">Lycée polyvalent de Cachan · Cachan (94230)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJETS -->
+<section id="projets">
+  <div class="section-inner">
+    <div class="section-label">// Réalisations</div>
+    <h2 class="section-title">Projets de 1ère année</h2>
+
+    <div class="projects-grid">
+
+      <!-- PROJET 1 -->
+      <div class="project-card anim">
+        <div class="card-header">
+          <h3>Infrastructure Cloud & GLPI</h3>
+          <span class="year-badge">2026</span>
+        </div>
+        <p class="card-desc">Support et mise à disposition de services — Déploiement cloud Azure, migration de données et mise en place d'un processus de support avec GLPI.</p>
+        <ul class="card-tasks">
+          <li>Organisation en équipe sur Trello (rôles, planning, suivi)</li>
+          <li>Déploiement d'une VM Linux sous Azure (C17)</li>
+          <li>Migration des bases de données MySQL vers le cloud (C5)</li>
+          <li>Gestion des utilisateurs et droits sur GLPI (C18)</li>
+          <li>Création, tri et priorisation des tickets de support</li>
+          <li>Hébergement et migration de service distant vers local</li>
+          <li>Déploiement d'un site sur Azure</li>
+        </ul>
+        <div class="code-block">
+          <div>$ mysqldump -u root -p db_local > backup.sql</div>
+          <div>$ mysql -h azure_host -u root -p db_remote < backup.sql</div>
+        </div>
+        <div class="tech-tags">
+          <span class="tech-tag">Azure</span>
+          <span class="tech-tag">Linux</span>
+          <span class="tech-tag">MySQL</span>
+          <span class="tech-tag">GLPI</span>
+          <span class="tech-tag">Trello</span>
+        </div>
+      </div>
+
+      <!-- PROJET 2 -->
+      <div class="project-card anim">
+        <div class="card-header">
+          <h3>Site auto-hébergé & Sauvegarde VM</h3>
+          <span class="year-badge">2026</span>
+        </div>
+        <p class="card-desc">Création d'un site web auto-hébergé sur VM avec solution de sauvegarde et restauration sur Windows Server.</p>
+        <ul class="card-tasks">
+          <li>Déploiement serveur web en VM (Apache, PHP, MySQL) avec SSH</li>
+          <li>Configuration réseau : NAT, redirections de ports, IP statique</li>
+          <li>Mise en place sauvegarde FTP et suivi de version via Git</li>
+          <li>Partage de dossiers et gestion des droits d'accès</li>
+          <li>Sauvegarde ciblée via Windows Server Backup</li>
+        </ul>
+        <div class="tech-tags">
+          <span class="tech-tag">Apache</span>
+          <span class="tech-tag">PHP</span>
+          <span class="tech-tag">MySQL</span>
+          <span class="tech-tag">Windows Server</span>
+          <span class="tech-tag">FTP</span>
+          <span class="tech-tag">Git</span>
+          <span class="tech-tag">SSH</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TABLEAU DE SYNTHÈSE PROJET SEYRIN -->
+<section id="synthese">
+  <div class="section-inner">
+    <div class="section-label">// Projet Seyrin</div>
+    <h2 class="section-title">Tableau de synthèse — Répartition des compétences</h2>
+
+    <div class="comp-doc anim" style="text-align: center; padding: 3rem 2rem;">
+      <div style="font-size: 2.5rem; margin-bottom: 1rem;">📊</div>
+      <h3 style="margin-bottom: 0.5rem;">Tableau de répartition des tâches</h3>
+      <p style="margin-bottom: 1.5rem;">Ce fichier Excel détaille l'attribution des compétences entre les 5 membres de l'équipe Seyrin (Johan, Rayan, Kylian/Gabriel, Kouakou, Firdaous) pour chaque compétence du référentiel BTS SIO mobilisée dans le projet.</p>
+      <a href="Classeur3.xlsx" download class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 8px;">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="vertical-align: middle;"><path d="M8 1v10M8 11L4.5 7.5M8 11l3.5-3.5M2 14h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Télécharger le tableau (Classeur3.xlsx)
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- DOCUMENTATIONS COMPÉTENCES -->
+<section id="docs-competences">
+  <div class="section-inner">
+    <div class="section-label">// Documentation</div>
+    <h2 class="section-title">Documentation des compétences — Projet Seyrin</h2>
+
+    <!-- C1 -->
+    <div class="comp-doc anim">
+      <span class="comp-badge">C1</span>
+      <h3>Gérer le patrimoine informatique</h3>
+      <p>Réalisation : Attribution du nom de domaine pour le projet Seyrin Agency et gestion du patrimoine serveur.</p>
+
+      <h4>Contexte</h4>
+      <p>Dans le cadre du projet Hackathon Seyrin, notre équipe devait rendre le site vitrine et l'instance GLPI accessibles via une adresse professionnelle et mémorisable. En tant que membre de l'équipe Infrastructure, j'ai été chargé de l'attribution et de la configuration du nom de domaine associé à notre projet.</p>
+
+      <h4>Démarche suivie</h4>
+      <ul>
+        <li>Recherche et sélection d'un nom de domaine pertinent auprès d'un bureau d'enregistrement (registrar)</li>
+        <li>Configuration des enregistrements DNS de type A et CNAME pour pointer vers l'adresse IP publique du serveur Azure</li>
+        <li>Création de sous-domaines dédiés (site vitrine, GLPI) pour séparer les services</li>
+        <li>Vérification de la propagation DNS via les commandes <code>nslookup</code> et <code>dig</code></li>
+        <li>Mise à jour et documentation de l'inventaire des ressources : nom de domaine, adresses IP, machines virtuelles et services associés</li>
+      </ul>
+
+      <h4>Résultats</h4>
+      <p>Le nom de domaine a été correctement configuré et propagé, permettant un accès fiable au site vitrine et à GLPI depuis n'importe quel poste connecté à Internet. L'inventaire du patrimoine informatique du projet a été tenu à jour tout au long du déploiement.</p>
+
+      <h4>Compétences acquises</h4>
+      <ul>
+        <li>Comprendre le fonctionnement du système DNS (enregistrements A, CNAME, TTL)</li>
+        <li>Gérer un nom de domaine auprès d'un registrar</li>
+        <li>Diagnostiquer les problèmes de propagation DNS</li>
+        <li>Documenter et tenir à jour un inventaire de ressources informatiques</li>
+      </ul>
+    </div>
+
+    <!-- C7 -->
+
+    <!-- C11 -->
+    <div class="comp-doc anim">
+      <span class="comp-badge">C11</span>
+      <h3>Référencement des services en ligne et mesure de leur visibilité</h3>
+      <p>Réalisation : Mise en place de Google Analytics sur le site vitrine Seyrin Agency hébergé sur GitHub Pages.</p>
+
+      <h4>Contexte</h4>
+      <p>Dans le cadre du projet Hackathon, notre équipe Seyrin disposait d'un site vitrine hébergé sur GitHub Pages. L'objectif était de mettre en place un outil de mesure pour évaluer la visibilité du site en ligne et analyser le comportement des visiteurs grâce à Google Analytics.</p>
+
+      <h4>Démarche suivie</h4>
+      <ul>
+        <li>Création d'un compte Google Analytics et d'une propriété pour le site vitrine de Seyrin Agency</li>
+        <li>Configuration du flux de données web avec l'URL du site GitHub Pages et récupération de l'identifiant de mesure (format G-XXXXXXXXXX)</li>
+        <li>Intégration du script de suivi Google Analytics (gtag.js) dans le <code>&lt;head&gt;</code> de chaque page du site vitrine</li>
+        <li>Vérification du bon fonctionnement : accès depuis plusieurs navigateurs et appareils, contrôle en temps réel dans Google Analytics, vérification de l'absence d'erreurs en console</li>
+      </ul>
+
+      <div class="code-block">
+        <div>&lt;!-- Google tag (gtag.js) --&gt;</div>
+        <div>&lt;script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"&gt;&lt;/script&gt;</div>
+        <div>&lt;script&gt;</div>
+        <div>&nbsp; window.dataLayer = window.dataLayer || [];</div>
+        <div>&nbsp; function gtag(){dataLayer.push(arguments);}</div>
+        <div>&nbsp; gtag('js', new Date());</div>
+        <div>&nbsp; gtag('config', 'G-XXXXXXXXXX');</div>
+        <div>&lt;/script&gt;</div>
+      </div>
+
+      <h4>Indicateurs analysés</h4>
+      <ul>
+        <li>Nombre de visiteurs sur une période donnée</li>
+        <li>Pages les plus consultées (Accueil, Équipe, Documentation)</li>
+        <li>Sources de trafic : accès direct, moteur de recherche, réseaux sociaux</li>
+        <li>Durée moyenne des sessions et taux de rebond</li>
+      </ul>
+
+      <h4>Compétences acquises</h4>
+      <ul>
+        <li>Créer et configurer une propriété Google Analytics</li>
+        <li>Intégrer un script de suivi sur un site statique (GitHub Pages)</li>
+        <li>Analyser les indicateurs de fréquentation et de visibilité d'un site web</li>
+        <li>Prendre des décisions d'amélioration basées sur des données concrètes</li>
+      </ul>
+    </div>
+
+    <!-- C7 (suite) -->
+    <div class="comp-doc anim">
+      <span class="comp-badge">C7</span>
+      <h3>Mettre à disposition des utilisateurs un service informatique</h3>
+      <p>Réalisation : Déploiement et mise à disposition du service GLPI et du site vitrine pour l'ensemble de l'équipe Seyrin.</p>
+
+      <h4>Contexte</h4>
+      <p>Le projet Seyrin nécessitait la mise à disposition de deux services principaux : un site vitrine pour la présentation de l'agence et une instance GLPI pour la gestion des tickets et du parc informatique. Ces services devaient être accessibles à distance par tous les membres de l'équipe, quel que soit leur emplacement géographique.</p>
+
+      <h4>Démarche suivie</h4>
+      <ul>
+        <li>Installation et configuration du serveur web Apache sur la machine virtuelle Azure (Ubuntu Server)</li>
+        <li>Déploiement de l'application GLPI avec les modules PHP nécessaires (php-mysql, php-curl, php-gd, php-xml, php-mbstring)</li>
+        <li>Transfert des fichiers du site vitrine et de GLPI vers le répertoire <code>/var/www/html/</code> du serveur via SCP</li>
+        <li>Configuration des règles de sécurité réseau (NSG Azure) pour autoriser le trafic HTTP (port 80) et HTTPS (port 443)</li>
+        <li>Tests d'accessibilité depuis des postes externes (connexion 4G, réseaux Wi-Fi tiers) pour valider la disponibilité des services</li>
+        <li>Rédaction d'une documentation utilisateur expliquant l'accès aux services et les identifiants de connexion</li>
+      </ul>
+
+      <h4>Résultats</h4>
+      <p>Les deux services ont été rendus accessibles de façon stable et sécurisée à l'ensemble de l'équipe. Chaque membre pouvait se connecter à GLPI pour créer et suivre des tickets, et consulter le site vitrine depuis n'importe quel navigateur. La documentation fournie a permis une prise en main rapide par tous les utilisateurs.</p>
+
+      <h4>Compétences acquises</h4>
+      <ul>
+        <li>Installer et configurer un serveur web pour héberger des applications</li>
+        <li>Gérer les droits d'accès et les règles réseau pour sécuriser un service</li>
+        <li>Valider la disponibilité d'un service depuis différents environnements</li>
+        <li>Rédiger une documentation de mise à disposition à destination des utilisateurs</li>
+      </ul>
+    </div>
+
+    <!-- C14 -->
+    <div class="comp-doc anim">
+      <span class="comp-badge">C14</span>
+      <h3>Évoluer dans un environnement numérique — Suivi de projet</h3>
+      <p>Réalisation : Création d'un tableau Excel pour l'attribution et le suivi des tâches au sein de l'équipe Seyrin.</p>
+
+      <h4>Contexte</h4>
+      <p>Avec cinq membres dans l'équipe Seyrin et de nombreuses compétences à valider en parallèle, il était indispensable de mettre en place un outil de suivi clair pour répartir les tâches et suivre l'avancement de chacun. En tant que membre de l'équipe Infrastructure, j'ai pris l'initiative de créer un tableau de suivi centralisé.</p>
+
+      <h4>Démarche suivie</h4>
+      <ul>
+        <li>Identification de l'ensemble des compétences du référentiel BTS SIO mobilisées dans le projet Seyrin (C1, C4, C5, C10, C11, C12, C14, C17, C18)</li>
+        <li>Création d'un tableur Excel structuré avec une colonne par membre de l'équipe et une ligne par compétence/tâche</li>
+        <li>Attribution des tâches en fonction des rôles de chacun (Infrastructure, Support, Chef de projet)</li>
+        <li>Mise à jour régulière du tableau en fonction de l'avancement des travaux</li>
+        <li>Partage du fichier avec l'ensemble de l'équipe via un espace commun pour assurer la transparence</li>
+      </ul>
+
+      <h4>Résultats</h4>
+      <p>Le tableau a permis à chaque membre de visualiser ses responsabilités et de suivre l'avancement global du projet. Il a également servi de support lors des points d'équipe pour identifier les tâches en retard et redistribuer la charge de travail si nécessaire.</p>
+
+      <h4>Compétences acquises</h4>
+      <ul>
+        <li>Organiser et structurer un suivi de projet avec des outils bureautiques</li>
+        <li>Répartir les responsabilités au sein d'une équipe pluridisciplinaire</li>
+        <li>Assurer la traçabilité de l'avancement d'un projet informatique</li>
+        <li>Communiquer de manière transparente sur l'état d'avancement des tâches</li>
+      </ul>
+    </div>
+
+    <!-- C17 -->
+    <div class="comp-doc anim">
+      <span class="comp-badge">C17</span>
+      <h3>Déployer et rendre accessible un service informatique en ligne</h3>
+      <p>Réalisation : Déploiement complet de l'infrastructure cloud sur Microsoft Azure — hébergement du site et déploiement sur Azure.</p>
+
+      <h4>Contexte</h4>
+      <p>Pour rendre le site vitrine et l'instance GLPI du projet Seyrin accessibles depuis l'extérieur, il était nécessaire de déployer l'ensemble de l'infrastructure sur le cloud. En tant que membre de l'équipe Infrastructure, j'ai participé à l'hébergement du site et au déploiement complet sur Microsoft Azure.</p>
+
+      <h4>Démarche suivie</h4>
+      <ul>
+        <li>Création d'un groupe de ressources Azure pour regrouper les composants du projet (VM, IP, réseau virtuel, disque)</li>
+        <li>Déploiement d'une machine virtuelle Linux (Ubuntu Server) avec une taille adaptée aux besoins et une région géographique optimisée</li>
+        <li>Configuration du Network Security Group (NSG) : ouverture des ports 22 (SSH), 80 (HTTP) et 443 (HTTPS)</li>
+        <li>Association d'une adresse IP publique statique à la VM</li>
+        <li>Installation d'Apache et des modules PHP requis sur la VM</li>
+        <li>Transfert des fichiers du site et de GLPI via SCP</li>
+        <li>Configuration DNS : enregistrements A pointant vers l'IP publique Azure</li>
+        <li>Installation de Certbot et génération d'un certificat SSL Let's Encrypt pour sécuriser les communications en HTTPS</li>
+        <li>Configuration du VirtualHost Apache avec les directives SSL</li>
+      </ul>
+
+      <div class="code-block">
+        <div># Déploiement VM Azure</div>
+        <div>$ az vm open-port --port 80 --resource-group MonGroupe --name MaVM</div>
+        <div>$ az vm open-port --port 443 --resource-group MonGroupe --name MaVM</div>
+        <div>&nbsp;</div>
+        <div># Installation serveur web</div>
+        <div>$ sudo apt install -y apache2 php php-mysql php-curl php-gd php-xml</div>
+        <div>&nbsp;</div>
+        <div># Sécurisation HTTPS</div>
+        <div>$ sudo certbot --apache -d monsite.fr -d glpi.monsite.fr</div>
+      </div>
+
+      <h4>Tests et validation</h4>
+      <ul>
+        <li>Validation DNS avec <code>nslookup</code> et <code>dig</code>, vérification de la propagation mondiale</li>
+        <li>Test du certificat SSL dans le navigateur (cadenas valide, pas d'avertissement)</li>
+        <li>Test de renouvellement automatique : <code>sudo certbot renew --dry-run</code></li>
+        <li>Accès depuis des postes externes (4G, Wi-Fi tiers) pour confirmer la disponibilité</li>
+      </ul>
+
+      <h4>Compétences acquises</h4>
+      <ul>
+        <li>Déployer et configurer une infrastructure cloud sur Microsoft Azure</li>
+        <li>Gérer les groupes de ressources, les règles réseau et les IP publiques Azure</li>
+        <li>Installer et configurer un serveur web Apache en environnement de production</li>
+        <li>Mettre en œuvre le protocole HTTPS avec Let's Encrypt et Certbot</li>
+        <li>Configurer et diagnostiquer les enregistrements DNS</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- COMPÉTENCES -->
+<section id="competences">
+  <div class="section-inner">
+    <div class="section-label">// Stack</div>
+    <h2 class="section-title">Compétences & Outils</h2>
+
+    <div class="skills-grid">
+
+      <div class="skill-group anim">
+        <div class="skill-icon">🖥️</div>
+        <h3>Administration système & Virtualisation</h3>
+        <div class="skill-list">
+          <span class="skill-pill">VMware</span>
+          <span class="skill-pill">VirtualBox</span>
+          <span class="skill-pill">Debian</span>
+          <span class="skill-pill">Ubuntu</span>
+          <span class="skill-pill">Windows Server</span>
+          <span class="skill-pill">GLPI</span>
+          <span class="skill-pill">Azure</span>
+          <span class="skill-pill">Snapshots</span>
+          <span class="skill-pill">Gestion IP</span>
+        </div>
+      </div>
+
+      <div class="skill-group anim">
+        <div class="skill-icon">🌐</div>
+        <h3>Réseaux</h3>
+        <div class="skill-list">
+          <span class="skill-pill">TCP/IP</span>
+          <span class="skill-pill">DHCP</span>
+          <span class="skill-pill">DNS</span>
+          <span class="skill-pill">VLAN</span>
+          <span class="skill-pill">NAT</span>
+          <span class="skill-pill">Cisco Packet Tracer</span>
+          <span class="skill-pill">Linux (Debian/Ubuntu)</span>
+        </div>
+      </div>
+
+      <div class="skill-group anim">
+        <div class="skill-icon">🛠️</div>
+        <h3>Outils & Méthodologie</h3>
+        <div class="skill-list">
+          <span class="skill-pill">Git</span>
+          <span class="skill-pill">Trello</span>
+          <span class="skill-pill">SSH</span>
+          <span class="skill-pill">FTP</span>
+          <span class="skill-pill">Apache</span>
+          <span class="skill-pill">PHP</span>
+          <span class="skill-pill">MySQL</span>
+          <span class="skill-pill">Mode projet</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- LANGUES -->
+    <div style="margin-top: 3rem;">
+      <h3 style="font-size: 1.1rem; margin-bottom: 1.25rem;">🌍 Langues</h3>
+      <div class="lang-bars">
+        <div class="lang-item anim">
+          <div class="lang-header">
+            <span>Anglais</span>
+            <span class="lang-level">B2</span>
+          </div>
+          <div class="lang-bar-bg">
+            <div class="lang-bar-fill" style="width: 0;" data-width="72%"></div>
+          </div>
+        </div>
+        <div class="lang-item anim">
+          <div class="lang-header">
+            <span>Espagnol</span>
+            <span class="lang-level">A2</span>
+          </div>
+          <div class="lang-bar-bg">
+            <div class="lang-bar-fill" style="width: 0;" data-width="35%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT / FOOTER -->
+<footer id="contact">
+  <p>© 2026 <span class="footer-name">Rayan COLLINOT</span> — BTS SIO SISR · EFREI Panthéon Assas</p>
+</footer>
+
+<script>
+// Scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      // Animate language bars
+      const bar = entry.target.querySelector('.lang-bar-fill');
+      if (bar) {
+        setTimeout(() => {
+          bar.style.width = bar.dataset.width;
+        }, 300);
+      }
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.anim').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
