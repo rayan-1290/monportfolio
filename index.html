@@ -876,30 +876,40 @@ footer .footer-name {
     <!-- C1 -->
     <div class="comp-doc anim">
       <span class="comp-badge">C1</span>
-      <h3>Gérer le patrimoine informatique</h3>
-      <p>Réalisation : Attribution du nom de domaine pour le projet Seyrin Agency et gestion du patrimoine serveur.</p>
+      <h3>Recenser et identifier les ressources numériques</h3>
+      <p>Réalisation : Recensement d'un parc informatique avec GLPI dans le cadre du projet Seyrin.</p>
 
       <h4>Contexte</h4>
-      <p>Dans le cadre du projet Hackathon Seyrin, notre équipe devait rendre le site vitrine et l'instance GLPI accessibles via une adresse professionnelle et mémorisable. En tant que membre de l'équipe Infrastructure, j'ai été chargé de l'attribution et de la configuration du nom de domaine associé à notre projet.</p>
+      <p>Dans le cadre du Hackathon, nous avons mis en place un outil de gestion de parc informatique afin de centraliser les informations des équipements et des utilisateurs. L'objectif était d'avoir une vision claire du parc informatique grâce à GLPI.</p>
 
       <h4>Démarche suivie</h4>
       <ul>
-        <li>Recherche et sélection d'un nom de domaine pertinent auprès d'un bureau d'enregistrement (registrar)</li>
-        <li>Configuration des enregistrements DNS de type A et CNAME pour pointer vers l'adresse IP publique du serveur Azure</li>
-        <li>Création de sous-domaines dédiés (site vitrine, GLPI) pour séparer les services</li>
-        <li>Vérification de la propagation DNS via les commandes <code>nslookup</code> et <code>dig</code></li>
-        <li>Mise à jour et documentation de l'inventaire des ressources : nom de domaine, adresses IP, machines virtuelles et services associés</li>
+        <li>Installation de GLPI sur un serveur Linux avec les dépendances nécessaires (Apache, PHP, MariaDB)</li>
+        <li>Création de la base de données dédiée et configuration des accès</li>
+        <li>Finalisation de l'installation via l'interface web de GLPI</li>
+        <li>Installation et configuration de l'agent GLPI sur les postes pour remonter automatiquement les informations vers le serveur</li>
+        <li>Création des comptes utilisateurs pour chaque membre de l'organisation</li>
+        <li>Attribution des rôles à chaque compte (administrateur, technicien, utilisateur) pour gérer les droits d'accès</li>
+        <li>Organisation du parc : identification des machines, de leurs caractéristiques et structuration des ressources dans l'outil</li>
       </ul>
 
-      <h4>Résultats</h4>
-      <p>Le nom de domaine a été correctement configuré et propagé, permettant un accès fiable au site vitrine et à GLPI depuis n'importe quel poste connecté à Internet. L'inventaire du patrimoine informatique du projet a été tenu à jour tout au long du déploiement.</p>
+      <div class="code-block">
+        <div># Installation des dépendances</div>
+        <div>$ sudo apt install apache2 php php-mysql php-curl mariadb-server</div>
+        <div>&nbsp;</div>
+        <div># Installation et configuration de l'agent GLPI</div>
+        <div>$ sudo apt install glpi-agent</div>
+        <div>$ sudo nano /etc/glpi-agent/agent.cfg</div>
+        <div>  server = http://IP_SERVEUR/glpi</div>
+        <div>$ sudo systemctl enable glpi-agent && sudo systemctl start glpi-agent</div>
+      </div>
 
       <h4>Compétences acquises</h4>
       <ul>
-        <li>Comprendre le fonctionnement du système DNS (enregistrements A, CNAME, TTL)</li>
-        <li>Gérer un nom de domaine auprès d'un registrar</li>
-        <li>Diagnostiquer les problèmes de propagation DNS</li>
-        <li>Documenter et tenir à jour un inventaire de ressources informatiques</li>
+        <li>Installer et configurer GLPI ainsi que son agent sur plusieurs machines</li>
+        <li>Recenser et identifier les ressources numériques d'une organisation</li>
+        <li>Structurer un parc informatique en attribuant des rôles et en centralisant les informations</li>
+        <li>Gérer les droits d'accès et les responsabilités au sein d'un outil de gestion de parc</li>
       </ul>
     </div>
 
