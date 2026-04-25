@@ -859,9 +859,9 @@ footer .footer-name {
       <div style="font-size: 2.5rem; margin-bottom: 1rem;">📊</div>
       <h3 style="margin-bottom: 0.5rem;">Tableau de répartition des tâches</h3>
       <p style="margin-bottom: 1.5rem;">Ce fichier Excel détaille l'attribution des compétences entre les 5 membres de l'équipe Seyrin (Johan, Rayan, Kylian/Gabriel, Kouakou, Firdaous) pour chaque compétence du référentiel BTS SIO mobilisée dans le projet.</p>
-      <a href="https://efrei365net-my.sharepoint.com/:x:/g/personal/johan_peret_efrei_net/IQDMPi5POClxRagp3i0gqGJ8AbEVPKLQAindc5bjb7mQLbg?e=2U4v9v&isSPOFile=1&ovuser=413600cf-bd4e-4c7c-8a61-69e73cddf731%2Crayan.collinot%40efrei.net&wdExp=TEAMS-TREATMENT&web=1&clickparams=eyJBcHBOYW1lIjoiVGVhbXMtRGVza3RvcCIsIkFwcFZlcnNpb24iOiIxNDE1LzI2MDMxMjIzMDIwIn0%3D" download class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 8px;">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="vertical-align: middle;"><path d="M8 1v10M8 11L4.5 7.5M8 11l3.5-3.5M2 14h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Télécharger le tableau (Classeur3.xlsx)
+      <a href="https://efrei365net-my.sharepoint.com/:x:/g/personal/johan_peret_efrei_net/IQDMPi5POClxRagp3i0gqGJ8AbEVPKLQAindc5bjb7mQLbg?e=2U4v9v&isSPOFile=1&ovuser=413600cf-bd4e-4c7c-8a61-69e73cddf731%2Crayan.collinot%40efrei.net&wdExp=TEAMS-TREATMENT&web=1&clickparams=eyJBcHBOYW1lIjoiVGVhbXMtRGVza3RvcCIsIkFwcFZlcnNpb24iOiIxNDE1LzI2MDMxMjIzMDIwIn0%3D" target="_blank" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 8px;">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="vertical-align: middle;"><path d="M5 1h8a1 1 0 011 1v12a1 1 0 01-1 1H3a1 1 0 01-1-1V5l3-4z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 1v4H1M7 9h4M7 12h4M5 9h.01M5 12h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Voir le tableau de synthèse (SharePoint)
       </a>
     </div>
   </div>
@@ -877,25 +877,31 @@ footer .footer-name {
     <div class="comp-doc anim">
       <span class="comp-badge">C1</span>
       <h3>Recenser et identifier les ressources numériques</h3>
-      <p>Réalisation : Recensement d'un parc informatique avec GLPI dans le cadre du projet Seyrin.</p>
+      <p>Réalisation : Recensement d'un parc informatique avec GLPI dans le cadre du Hackathon Seyrin.</p>
 
       <h4>Contexte</h4>
-      <p>Dans le cadre du Hackathon, nous avons mis en place un outil de gestion de parc informatique afin de centraliser les informations des équipements et des utilisateurs. L'objectif était d'avoir une vision claire du parc informatique grâce à GLPI.</p>
+      <p>Dans le cadre d'un hackathon, nous avons mis en place un outil de gestion de parc informatique afin de centraliser les informations des équipements et des utilisateurs. L'objectif était d'avoir une vision claire du parc informatique grâce à GLPI.</p>
 
       <h4>Démarche suivie</h4>
       <ul>
-        <li>Installation de GLPI sur un serveur Linux avec les dépendances nécessaires (Apache, PHP, MariaDB)</li>
-        <li>Création de la base de données dédiée et configuration des accès</li>
-        <li>Finalisation de l'installation via l'interface web de GLPI</li>
-        <li>Installation et configuration de l'agent GLPI sur les postes pour remonter automatiquement les informations vers le serveur</li>
-        <li>Création des comptes utilisateurs pour chaque membre de l'organisation</li>
-        <li>Attribution des rôles à chaque compte (administrateur, technicien, utilisateur) pour gérer les droits d'accès</li>
-        <li>Organisation du parc : identification des machines, de leurs caractéristiques et structuration des ressources dans l'outil</li>
+        <li>Installation de GLPI sur un serveur Linux : installation des dépendances (Apache, PHP, MariaDB), démarrage des services et création de la base de données dédiée</li>
+        <li>Téléchargement et déploiement de GLPI dans <code>/var/www/html</code>, puis finalisation de l'installation via l'interface web</li>
+        <li>Installation de l'agent GLPI sur les postes pour remonter automatiquement les informations matérielles et logicielles vers le serveur</li>
+        <li>Configuration de l'agent : ajout de l'URL du serveur GLPI dans <code>/etc/glpi-agent/agent.cfg</code>, activation et démarrage du service</li>
+        <li>Création des comptes utilisateurs pour chaque membre de l'organisation (Amadou, Ézékiel, Johan, Kylian, Rayan, etc.)</li>
+        <li>Attribution des rôles à chaque compte (administrateur, technicien, utilisateur) pour gérer les droits d'accès et les responsabilités</li>
+        <li>Organisation du parc grâce aux remontées de l'agent : identification des machines (debian, fourmi-VMware, pc-de-rayan, pc-de-johan…), de leurs caractéristiques (processeur, OS, fabricant) et des logiciels installés (4.7K logiciels inventoriés)</li>
       </ul>
 
       <div class="code-block">
         <div># Installation des dépendances</div>
-        <div>$ sudo apt install apache2 php php-mysql php-curl mariadb-server</div>
+        <div>$ sudo apt install apache2 php php-mysql php-curl php-gd php-xml mariadb-server</div>
+        <div>&nbsp;</div>
+        <div># Création de la base de données GLPI</div>
+        <div>$ sudo mysql -u root -p</div>
+        <div>  CREATE DATABASE glpi;</div>
+        <div>  CREATE USER 'glpi'@'localhost' IDENTIFIED BY 'motdepasse';</div>
+        <div>  GRANT ALL PRIVILEGES ON glpi.* TO 'glpi'@'localhost';</div>
         <div>&nbsp;</div>
         <div># Installation et configuration de l'agent GLPI</div>
         <div>$ sudo apt install glpi-agent</div>
@@ -906,14 +912,59 @@ footer .footer-name {
 
       <h4>Compétences acquises</h4>
       <ul>
-        <li>Installer et configurer GLPI ainsi que son agent sur plusieurs machines</li>
-        <li>Recenser et identifier les ressources numériques d'une organisation</li>
+        <li>Installer et configurer GLPI ainsi que son agent sur plusieurs machines Linux</li>
+        <li>Recenser et identifier les ressources numériques (matérielles et logicielles) d'une organisation</li>
         <li>Structurer un parc informatique en attribuant des rôles et en centralisant les informations</li>
-        <li>Gérer les droits d'accès et les responsabilités au sein d'un outil de gestion de parc</li>
+        <li>Exploiter les données d'inventaire remontées automatiquement par l'agent GLPI</li>
       </ul>
     </div>
 
     <!-- C7 -->
+    <div class="comp-doc anim">
+      <span class="comp-badge">C7</span>
+      <h3>Collecte, suivi et orientation des demandes</h3>
+      <p>Réalisation : Gestion des tickets d'incidents et des demandes d'assistance via GLPI pendant le Hackathon Seyrin.</p>
+
+      <h4>Contexte</h4>
+      <p>Dans le cadre d'un hackathon réalisé en groupe de 5 personnes à l'Efrei, notre équipe a été amenée à déployer et administrer une infrastructure informatique complète pour le site Seyrin. Nous avons utilisé GLPI pour gérer les tickets d'incidents et les demandes d'assistance émises par les membres de l'équipe tout au long du hackathon. Le tableau de bord GLPI était hébergé sur Azure (<code>seyrin-glpi.francecentral.cloudapp.azure.com</code>).</p>
+
+      <h4>Cycle de vie d'un ticket</h4>
+      <ul>
+        <li><strong>Nouveau</strong> — Le ticket est créé par un membre du groupe avec la description du problème</li>
+        <li><strong>En cours (Attribué)</strong> — Le ticket est assigné au technicien compétent (Infra ou Support)</li>
+        <li><strong>En cours (Planifié)</strong> — Le technicien analyse et travaille sur la résolution</li>
+        <li><strong>Résolu</strong> — La solution est appliquée et documentée dans le ticket</li>
+        <li><strong>Clôturé</strong> — Le demandeur confirme la résolution, le ticket est fermé</li>
+      </ul>
+
+      <h4>Exemples de tickets traités</h4>
+      <ul>
+        <li><strong>Ticket #1 — Agent GLPI ne remonte pas l'inventaire :</strong> L'URL dans <code>agent.cfg</code> pointait en HTTP au lieu de HTTPS et le port 443 était fermé. Correction de l'URL, ouverture du port 443 via <code>ufw</code>, redémarrage du service. Inventaire remonté avec succès.</li>
+        <li><strong>Ticket #2 — Accès refusé à l'interface GLPI :</strong> Un compte utilisateur avait été créé sans profil d'accès assigné. Attribution du profil « Technicien » depuis l'administration GLPI. Connexion vérifiée et fonctionnelle.</li>
+        <li><strong>Ticket #3 — Machine absente de l'inventaire après redémarrage :</strong> Le service <code>glpi-agent</code> n'était pas configuré pour démarrer automatiquement au boot. Activation avec <code>systemctl enable</code>, vérification de la remontée d'inventaire.</li>
+      </ul>
+
+      <div class="code-block">
+        <div># Correction URL agent GLPI</div>
+        <div>$ sudo nano /etc/glpi-agent/agent.cfg</div>
+        <div>  server = https://IP_SERVEUR/glpi</div>
+        <div>&nbsp;</div>
+        <div># Ouverture du port 443</div>
+        <div>$ sudo ufw allow 443/tcp</div>
+        <div>$ sudo systemctl restart glpi-agent</div>
+        <div>&nbsp;</div>
+        <div># Activation démarrage automatique de l'agent</div>
+        <div>$ sudo systemctl enable glpi-agent</div>
+      </div>
+
+      <h4>Compétences acquises</h4>
+      <ul>
+        <li>Maîtriser un logiciel de gestion de parc et d'incidents (GLPI)</li>
+        <li>Collecter, suivre et orienter des demandes via un système de ticketing</li>
+        <li>Diagnostiquer et résoudre des incidents de manière méthodique</li>
+        <li>Administrer les comptes utilisateurs avec des droits différenciés</li>
+      </ul>
+    </div>
 
     <!-- C11 -->
     <div class="comp-doc anim">
@@ -926,7 +977,7 @@ footer .footer-name {
 
       <h4>Démarche suivie</h4>
       <ul>
-        <li>Création d'un compte Google Analytics et d'une propriété pour le site vitrine de Seyrin Agency</li>
+        <li>Création d'un compte Google Analytics : connexion à <code>analytics.google.com</code>, création d'une propriété pour le site vitrine</li>
         <li>Configuration du flux de données web avec l'URL du site GitHub Pages et récupération de l'identifiant de mesure (format G-XXXXXXXXXX)</li>
         <li>Intégration du script de suivi Google Analytics (gtag.js) dans le <code>&lt;head&gt;</code> de chaque page du site vitrine</li>
         <li>Vérification du bon fonctionnement : accès depuis plusieurs navigateurs et appareils, contrôle en temps réel dans Google Analytics, vérification de l'absence d'erreurs en console</li>
@@ -948,76 +999,42 @@ footer .footer-name {
         <li>Nombre de visiteurs sur une période donnée</li>
         <li>Pages les plus consultées (Accueil, Équipe, Documentation)</li>
         <li>Sources de trafic : accès direct, moteur de recherche, réseaux sociaux</li>
-        <li>Durée moyenne des sessions et taux de rebond</li>
+        <li>Durée moyenne des sessions et taux de rebond (pourcentage de visiteurs quittant le site après une seule page)</li>
       </ul>
 
       <h4>Compétences acquises</h4>
       <ul>
         <li>Créer et configurer une propriété Google Analytics</li>
-        <li>Intégrer un script de suivi sur un site statique (GitHub Pages)</li>
+        <li>Intégrer un script de suivi sur un site statique hébergé sur GitHub Pages</li>
         <li>Analyser les indicateurs de fréquentation et de visibilité d'un site web</li>
         <li>Prendre des décisions d'amélioration basées sur des données concrètes</li>
-      </ul>
-    </div>
-
-    <!-- C7 (suite) -->
-    <div class="comp-doc anim">
-      <span class="comp-badge">C7</span>
-      <h3>Mettre à disposition des utilisateurs un service informatique</h3>
-      <p>Réalisation : Déploiement et mise à disposition du service GLPI et du site vitrine pour l'ensemble de l'équipe Seyrin.</p>
-
-      <h4>Contexte</h4>
-      <p>Le projet Seyrin nécessitait la mise à disposition de deux services principaux : un site vitrine pour la présentation de l'agence et une instance GLPI pour la gestion des tickets et du parc informatique. Ces services devaient être accessibles à distance par tous les membres de l'équipe, quel que soit leur emplacement géographique.</p>
-
-      <h4>Démarche suivie</h4>
-      <ul>
-        <li>Installation et configuration du serveur web Apache sur la machine virtuelle Azure (Ubuntu Server)</li>
-        <li>Déploiement de l'application GLPI avec les modules PHP nécessaires (php-mysql, php-curl, php-gd, php-xml, php-mbstring)</li>
-        <li>Transfert des fichiers du site vitrine et de GLPI vers le répertoire <code>/var/www/html/</code> du serveur via SCP</li>
-        <li>Configuration des règles de sécurité réseau (NSG Azure) pour autoriser le trafic HTTP (port 80) et HTTPS (port 443)</li>
-        <li>Tests d'accessibilité depuis des postes externes (connexion 4G, réseaux Wi-Fi tiers) pour valider la disponibilité des services</li>
-        <li>Rédaction d'une documentation utilisateur expliquant l'accès aux services et les identifiants de connexion</li>
-      </ul>
-
-      <h4>Résultats</h4>
-      <p>Les deux services ont été rendus accessibles de façon stable et sécurisée à l'ensemble de l'équipe. Chaque membre pouvait se connecter à GLPI pour créer et suivre des tickets, et consulter le site vitrine depuis n'importe quel navigateur. La documentation fournie a permis une prise en main rapide par tous les utilisateurs.</p>
-
-      <h4>Compétences acquises</h4>
-      <ul>
-        <li>Installer et configurer un serveur web pour héberger des applications</li>
-        <li>Gérer les droits d'accès et les règles réseau pour sécuriser un service</li>
-        <li>Valider la disponibilité d'un service depuis différents environnements</li>
-        <li>Rédiger une documentation de mise à disposition à destination des utilisateurs</li>
       </ul>
     </div>
 
     <!-- C14 -->
     <div class="comp-doc anim">
       <span class="comp-badge">C14</span>
-      <h3>Évoluer dans un environnement numérique — Suivi de projet</h3>
+      <h3>Gestion et suivi de projet</h3>
       <p>Réalisation : Création d'un tableau Excel pour l'attribution et le suivi des tâches au sein de l'équipe Seyrin.</p>
 
       <h4>Contexte</h4>
-      <p>Avec cinq membres dans l'équipe Seyrin et de nombreuses compétences à valider en parallèle, il était indispensable de mettre en place un outil de suivi clair pour répartir les tâches et suivre l'avancement de chacun. En tant que membre de l'équipe Infrastructure, j'ai pris l'initiative de créer un tableau de suivi centralisé.</p>
+      <p>Dans le cadre d'un projet de type hackathon réalisé au cours de ma formation en BTS SIO, j'ai participé au développement d'une application web en équipe. Afin d'assurer une organisation efficace du projet, j'ai d'abord identifié et recensé les compétences des différents membres de l'équipe. Cela m'a permis d'adapter la répartition des tâches et de mettre en place un tableau Excel pour organiser, attribuer et suivre l'avancement des différentes activités.</p>
 
       <h4>Démarche suivie</h4>
       <ul>
-        <li>Identification de l'ensemble des compétences du référentiel BTS SIO mobilisées dans le projet Seyrin (C1, C4, C5, C10, C11, C12, C14, C17, C18)</li>
-        <li>Création d'un tableur Excel structuré avec une colonne par membre de l'équipe et une ligne par compétence/tâche</li>
-        <li>Attribution des tâches en fonction des rôles de chacun (Infrastructure, Support, Chef de projet)</li>
-        <li>Mise à jour régulière du tableau en fonction de l'avancement des travaux</li>
-        <li>Partage du fichier avec l'ensemble de l'équipe via un espace commun pour assurer la transparence</li>
+        <li>Identification et recensement des compétences de chaque membre de l'équipe pour adapter la répartition</li>
+        <li>Conception d'un tableau Excel structuré pour recenser l'ensemble des tâches du hackathon</li>
+        <li>Définition de colonnes de suivi : compétences acquises, attribution aux membres de l'équipe</li>
+        <li>Mise à jour du tableau en temps réel pendant le hackathon pour assurer la visibilité de l'avancement à tous les membres</li>
+        <li>Partage du fichier avec l'ensemble de l'équipe via un espace commun (SharePoint)</li>
       </ul>
-
-      <h4>Résultats</h4>
-      <p>Le tableau a permis à chaque membre de visualiser ses responsabilités et de suivre l'avancement global du projet. Il a également servi de support lors des points d'équipe pour identifier les tâches en retard et redistribuer la charge de travail si nécessaire.</p>
 
       <h4>Compétences acquises</h4>
       <ul>
         <li>Organiser et structurer un suivi de projet avec des outils bureautiques</li>
-        <li>Répartir les responsabilités au sein d'une équipe pluridisciplinaire</li>
-        <li>Assurer la traçabilité de l'avancement d'un projet informatique</li>
-        <li>Communiquer de manière transparente sur l'état d'avancement des tâches</li>
+        <li>Répartir les responsabilités au sein d'une équipe en fonction des compétences de chacun</li>
+        <li>Assurer la traçabilité et la visibilité de l'avancement d'un projet informatique</li>
+        <li>Comprendre l'importance d'une gestion rigoureuse des tâches en environnement projet</li>
       </ul>
     </div>
 
@@ -1025,51 +1042,57 @@ footer .footer-name {
     <div class="comp-doc anim">
       <span class="comp-badge">C17</span>
       <h3>Déployer et rendre accessible un service informatique en ligne</h3>
-      <p>Réalisation : Déploiement complet de l'infrastructure cloud sur Microsoft Azure — hébergement du site et déploiement sur Azure.</p>
+      <p>Réalisation : Déploiement complet et sécurisé d'une infrastructure GLPI sur Microsoft Azure.</p>
 
       <h4>Contexte</h4>
-      <p>Pour rendre le site vitrine et l'instance GLPI du projet Seyrin accessibles depuis l'extérieur, il était nécessaire de déployer l'ensemble de l'infrastructure sur le cloud. En tant que membre de l'équipe Infrastructure, j'ai participé à l'hébergement du site et au déploiement complet sur Microsoft Azure.</p>
+      <p>Après une première installation locale de GLPI, il était nécessaire de le rendre accessible depuis l'extérieur afin que toute l'équipe puisse l'utiliser à distance. De plus, le fonctionnement initial en HTTP représentait un risque pour la confidentialité des données échangées. L'objectif était triple : acquérir et configurer un nom de domaine, déployer le serveur dans un environnement cloud fiable, et sécuriser les communications via HTTPS.</p>
+
+      <h4>Architecture</h4>
+      <ul>
+        <li>Machine virtuelle Linux (Ubuntu Server) hébergée sur Microsoft Azure dans un groupe de ressources dédié</li>
+        <li>Serveur web Apache2 (ports 80 et 443)</li>
+        <li>Nom de domaine avec entrées DNS pointant vers l'IP publique Azure</li>
+        <li>Certificat SSL/TLS gratuit Let's Encrypt via Certbot</li>
+      </ul>
 
       <h4>Démarche suivie</h4>
       <ul>
-        <li>Création d'un groupe de ressources Azure pour regrouper les composants du projet (VM, IP, réseau virtuel, disque)</li>
-        <li>Déploiement d'une machine virtuelle Linux (Ubuntu Server) avec une taille adaptée aux besoins et une région géographique optimisée</li>
-        <li>Configuration du Network Security Group (NSG) : ouverture des ports 22 (SSH), 80 (HTTP) et 443 (HTTPS)</li>
-        <li>Association d'une adresse IP publique statique à la VM</li>
-        <li>Installation d'Apache et des modules PHP requis sur la VM</li>
-        <li>Transfert des fichiers du site et de GLPI via SCP</li>
-        <li>Configuration DNS : enregistrements A pointant vers l'IP publique Azure</li>
-        <li>Installation de Certbot et génération d'un certificat SSL Let's Encrypt pour sécuriser les communications en HTTPS</li>
-        <li>Configuration du VirtualHost Apache avec les directives SSL</li>
+        <li><strong>Étape 1 — Infrastructure cloud :</strong> Création d'un groupe de ressources Azure, déploiement d'une VM Ubuntu Server, configuration du NSG (ports 22, 80, 443), association d'une IP publique statique</li>
+        <li><strong>Étape 2 — Serveur web :</strong> Connexion SSH à la VM, installation d'Apache et des modules PHP, transfert des fichiers GLPI via SCP vers <code>/var/www/html/</code></li>
+        <li><strong>Étape 3 — DNS :</strong> Enregistrement du nom de domaine, création des entrées DNS de type A (@ , www, glpi) pointant vers l'IP publique Azure</li>
+        <li><strong>Étape 4 — HTTPS :</strong> Installation de Certbot, génération du certificat SSL Let's Encrypt, configuration du VirtualHost Apache avec les directives SSL, redirection automatique HTTP → HTTPS</li>
       </ul>
 
       <div class="code-block">
-        <div># Déploiement VM Azure</div>
+        <div># Ouverture des ports Azure</div>
         <div>$ az vm open-port --port 80 --resource-group MonGroupe --name MaVM</div>
         <div>$ az vm open-port --port 443 --resource-group MonGroupe --name MaVM</div>
         <div>&nbsp;</div>
         <div># Installation serveur web</div>
-        <div>$ sudo apt install -y apache2 php php-mysql php-curl php-gd php-xml</div>
+        <div>$ sudo apt install -y apache2 php php-mysql php-curl php-gd php-xml php-mbstring</div>
         <div>&nbsp;</div>
-        <div># Sécurisation HTTPS</div>
+        <div># Transfert des fichiers GLPI</div>
+        <div>$ scp -r ./glpi/ azureuser@IP_PUBLIQUE_VM:/var/www/html/</div>
+        <div>&nbsp;</div>
+        <div># Certificat SSL Let's Encrypt</div>
+        <div>$ sudo apt install -y certbot python3-certbot-apache</div>
         <div>$ sudo certbot --apache -d monsite.fr -d glpi.monsite.fr</div>
       </div>
 
       <h4>Tests et validation</h4>
       <ul>
-        <li>Validation DNS avec <code>nslookup</code> et <code>dig</code>, vérification de la propagation mondiale</li>
+        <li>Validation DNS avec <code>nslookup</code> et <code>dig</code>, vérification de la propagation mondiale via un outil en ligne</li>
         <li>Test du certificat SSL dans le navigateur (cadenas valide, pas d'avertissement)</li>
         <li>Test de renouvellement automatique : <code>sudo certbot renew --dry-run</code></li>
-        <li>Accès depuis des postes externes (4G, Wi-Fi tiers) pour confirmer la disponibilité</li>
+        <li>Accès depuis des postes externes (4G, Wi-Fi tiers) pour confirmer la disponibilité de GLPI</li>
       </ul>
 
       <h4>Compétences acquises</h4>
       <ul>
-        <li>Déployer et configurer une infrastructure cloud sur Microsoft Azure</li>
-        <li>Gérer les groupes de ressources, les règles réseau et les IP publiques Azure</li>
+        <li>Déployer et configurer une infrastructure cloud sur Microsoft Azure (groupes de ressources, NSG, IP publiques)</li>
         <li>Installer et configurer un serveur web Apache en environnement de production</li>
-        <li>Mettre en œuvre le protocole HTTPS avec Let's Encrypt et Certbot</li>
-        <li>Configurer et diagnostiquer les enregistrements DNS</li>
+        <li>Mettre en œuvre la gestion DNS et associer un nom de domaine à une infrastructure cloud</li>
+        <li>Sécuriser les communications via HTTPS avec Let's Encrypt et Certbot</li>
       </ul>
     </div>
 
